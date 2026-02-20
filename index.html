@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Fragment Space — A personal digital workshop by a first-year Software Engineering student. Projects, skills, and the journey of learning to code." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Fragment Space — Portfolio" />
+  <meta property="og:description"
+    content="A personal digital workshop — exploring software engineering, one fragment at a time." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og-preview.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <title>Fragment Space — Portfolio</title>
+
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%234ecdc4'/></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ═══════════ LOADING SCREEN ═══════════ -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader__content">
+      <div class="loader__logo">
+        <span class="loader__dot"></span>
+        <span class="loader__text">fragment<span class="loader__accent">space</span></span>
+      </div>
+      <div class="loader__bar">
+        <div class="loader__bar-fill"></div>
+      </div>
+      <span class="loader__status">initializing...</span>
+    </div>
+  </div>
+
+  <!-- ═══════════ ANIMATED BACKGROUND ═══════════ -->
+  <div class="bg-animated" aria-hidden="true">
+    <div class="bg-gradient bg-gradient--1"></div>
+    <div class="bg-gradient bg-gradient--2"></div>
+    <div class="bg-gradient bg-gradient--3"></div>
+  </div>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- ═══════════ PROJECT DETAIL PAGE ═══════════ -->
+  <div id="project-page" class="project-page" hidden>
+    <div class="project-page__hero">
+      <img src="" alt="" class="project-page__hero-img" />
+      <div class="project-page__hero-overlay"></div>
+      <div class="project-page__hero-content">
+        <button class="project-page__back" aria-label="Back to projects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M19 12H5" />
+            <polyline points="12 19 5 12 12 5" />
+          </svg>
+          <span>Back to Projects</span>
+        </button>
+        <span class="project-page__index">01</span>
+        <h2 class="project-page__title">Project</h2>
+        <div class="project-page__tags"></div>
+      </div>
+    </div>
+
+    <article class="project-page__body">
+      <div class="project-page__main">
+        <p class="project-page__desc"></p>
+
+        <div class="project-page__meta">
+          <div class="project-page__meta-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M9 3v18" />
+            </svg>
+            <div><span class="meta__label">Type</span><span class="meta__value" data-field="type"></span></div>
+          </div>
+          <div class="project-page__meta-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" />
+            </svg>
+            <div><span class="meta__label">Status</span><span class="meta__value" data-field="status"></span></div>
+          </div>
+          <div class="project-page__meta-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+              <circle cx="12" cy="9" r="2.5" />
+            </svg>
+            <div><span class="meta__label">Source</span><span class="meta__value" data-field="source"></span></div>
+          </div>
+          <div class="project-page__meta-card project-page__meta-card--full">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+            </svg>
+            <div><span class="meta__label">What I Learned</span><span class="meta__value" data-field="learned"></span>
+            </div>
+          </div>
+        </div>
+
+        <section class="project-page__documentation">
+          <h3 class="project-page__section-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="m21 15-5-5L5 21" />
+            </svg>
+            Documentation & Screenshots
+          </h3>
+          <div class="project-page__gallery"></div>
+        </section>
+
+        <div class="project-page__actions">
+          <a href="#" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+            <span>View Live Project</span>
+          </a>
+          <button class="btn btn--ghost project-page__back-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M19 12H5" />
+              <polyline points="12 19 5 12 12 5" />
+            </svg>
+            <span>Back to Projects</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════ EASTER EGG TOAST ═══════════ -->
+  <div id="easter-toast" class="easter-toast" hidden>
+    <span class="easter-toast__icon">🥚</span>
+    <span class="easter-toast__text">You found a secret! You're curious — that's the best trait for a developer.</span>
+  </div>
+
+  <!-- ═══════════ SCROLL TO TOP ═══════════ -->
+  <button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M12 19V5" />
+      <polyline points="5 12 12 5 19 12" />
+    </svg>
+  </button>
+
+  <!-- ═══════════ THEME TOGGLE ═══════════ -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light mode">
+    <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+    <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="12" cy="12" r="5" />
+      <path
+        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+    </svg>
+  </button>
+
+  <!-- ═══════════ LANGUAGE TOGGLE ═══════════ -->
+  <button id="lang-toggle" class="lang-toggle" aria-label="Switch language">
+    <span class="lang-toggle__text">ID</span>
+  </button>
+
+  <!-- ═══════════ NAVIGATION ═══════════ -->
+  <nav id="main-nav" class="nav" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="#landing" class="nav__logo" aria-label="Home">
+        <span class="nav__logo-dot" aria-hidden="true"></span>
+        <span class="nav__logo-text">fragment<span class="nav__logo-accent">space</span></span>
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="#about" class="nav__link"><span class="nav__link-index">00</span><span
+              data-i18n="nav_about">about</span></a></li>
+        <li><a href="#projects" class="nav__link"><span class="nav__link-index">01</span><span
+              data-i18n="nav_projects">projects</span></a></li>
+        <li><a href="#journey" class="nav__link"><span class="nav__link-index">02</span><span
+              data-i18n="nav_journey">journey</span></a></li>
+        <li><a href="#skills" class="nav__link"><span class="nav__link-index">03</span><span
+              data-i18n="nav_skills">skills</span></a></li>
+        <li><a href="#contact" class="nav__link"><span class="nav__link-index">04</span><span
+              data-i18n="nav_contact">contact</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════ MAIN CONTENT ═══════════ -->
+  <main id="main-content" class="main-content">
+
+    <!-- ── LANDING ── -->
+    <section id="landing" class="landing" aria-label="Introduction">
+      <div class="landing__content">
+        <div class="landing__photo-wrap">
+          <img src="assets/profile.jpg" alt="Profile photo" class="landing__photo" width="200" height="200"
+            loading="eager" />
+          <div class="landing__photo-ring" aria-hidden="true"></div>
+          <div class="landing__photo-glow" aria-hidden="true"></div>
+        </div>
+        <div class="landing__annotations" aria-hidden="true">
+          <span class="annotation annotation--left" data-delay="1200" data-i18n="ann_student">← first-year
+            student</span>
+          <span class="annotation annotation--right" data-delay="1600" data-i18n="ann_curious">curious →</span>
+          <span class="annotation annotation--top" data-delay="2000" data-i18n="ann_builder">↑ builder</span>
+          <span class="annotation annotation--bottom" data-delay="2400" data-i18n="ann_exploring">↓ exploring</span>
+        </div>
+        <h1 class="landing__name" data-scramble="Naufal Galih Prakoso">
+          <span class="landing__name-text">Naufal Galih Prakoso</span>
+        </h1>
+        <p class="landing__subtitle">
+          <span class="landing__cursor" aria-hidden="true">&gt;</span>
+          <span class="landing__subtitle-text"
+            data-typing="software engineering student · building things · breaking things · learning"
+            data-typing-id="mahasiswa rekayasa perangkat lunak · membuat sesuatu · merusak sesuatu · belajar"
+            data-typing-en="software engineering student · building things · breaking things · learning">software
+            engineering student</span>
+        </p>
+        <div class="landing__status" aria-hidden="true">
+          <span class="status-dot"></span>
+          <span data-i18n="status_exploring">status: exploring</span>
+        </div>
+        <div class="landing__cv-group sr">
+          <a href="assets/cv-ats.pdf" download class="landing__cv-btn landing__cv-btn--ats"
+            aria-label="Download CV ATS">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <polyline points="10 9 9 9 8 9" />
+            </svg>
+            <span>CV ATS</span>
+          </a>
+          <a href="assets/cv-kreatif.pdf" download class="landing__cv-btn landing__cv-btn--creative"
+            aria-label="Download CV Kreatif">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+              <path d="M2 12l10 5 10-5" />
+            </svg>
+            <span>CV Kreatif</span>
+          </a>
+        </div>
+      </div>
+      <div class="landing__scroll" aria-hidden="true">
+        <span class="landing__scroll-text">scroll to explore</span>
+        <div class="landing__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ── ABOUT ── -->
+    <section id="about" class="about" aria-label="About me">
+      <header class="section-header sr">
+        <span class="section-header__index">00</span>
+        <h2 class="section-header__title" data-i18n="about_title">About</h2>
+        <span class="section-header__line" aria-hidden="true"></span>
+        <p class="section-header__note" data-i18n="about_note">who's behind the fragments</p>
+      </header>
+
+      <div class="about__content">
+        <p class="about__bio sr" data-i18n="about_bio">
+          First-year Software Engineering student driven by curiosity and a love for building things from scratch.
+          I believe the best way to learn is by doing — breaking things, debugging, and creating something better each
+          time.
+          Currently exploring web development, algorithms, and everything in between.
+        </p>
+
+        <!-- Animated stats -->
+        <div class="about__stats sr">
+          <div class="stat" data-count="4">
+            <span class="stat__number">0</span>
+            <span class="stat__label" data-i18n="stat_projects">Projects</span>
+          </div>
+          <div class="stat" data-count="6">
+            <span class="stat__number">0</span>
+            <span class="stat__label" data-i18n="stat_skills">Skills</span>
+          </div>
+          <div class="stat" data-count="6">
+            <span class="stat__number">0</span>
+            <span class="stat__label" data-i18n="stat_months">Months Coding</span>
+          </div>
+        </div>
+
+        <div class="about__facts">
+          <a href="https://maps.app.goo.gl/EDHUk8t9NPhskbjd7" target="_blank" rel="noopener noreferrer"
+            class="about__fact sr" title="Open in Google Maps">
+            <span class="about__fact-icon">📍</span>
+            <div>
+              <span class="about__fact-label" data-i18n="fact_location">Location</span>
+              <span class="about__fact-value">Cikarang Barat <small style="color:var(--accent-cool);font-size:.65rem">→
+                  maps</small></span>
+            </div>
+          </a>
+          <div class="about__fact sr">
+            <span class="about__fact-icon">🎓</span>
+            <div><span class="about__fact-label" data-i18n="fact_semester">Semester</span><span
+                class="about__fact-value" data-i18n="fact_semester_val">1st Year</span></div>
+          </div>
+          <div class="about__fact sr">
+            <span class="about__fact-icon">🎯</span>
+            <div><span class="about__fact-label" data-i18n="fact_focus">Focus</span><span class="about__fact-value"
+                data-i18n="fact_focus_val">Software Development</span>
+            </div>
+          </div>
+          <div class="about__fact sr">
+            <span class="about__fact-icon">🚀</span>
+            <div><span class="about__fact-label" data-i18n="fact_goal">Goal</span><span class="about__fact-value"
+                data-i18n="fact_goal_val">Build & ship real
+                projects</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROJECTS ── -->
+    <section id="projects" class="projects" aria-label="Projects">
+      <header class="section-header sr">
+        <span class="section-header__index">01</span>
+        <h2 class="section-header__title" data-i18n="projects_title">Projects</h2>
+        <span class="section-header__line" aria-hidden="true"></span>
+        <p class="section-header__note" data-i18n="projects_note">modules I've built so far</p>
+      </header>
+
+      <!-- Filter buttons -->
+      <div class="projects__filters sr">
+        <button class="filter-btn active" data-filter="all" data-i18n="filter_all">All</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="python">Python</button>
+        <button class="filter-btn" data-filter="game" data-i18n="filter_game">Game</button>
+      </div>
+
+      <div class="projects__grid">
+        <article class="project-card sr" tabindex="0" data-category="web" data-accent="warm" data-index="01"
+          data-title="TaskFlow"
+          data-desc="An interactive to-do list app with drag-and-drop reordering, priority levels, and local storage persistence. My first real project that taught me the fundamentals of DOM manipulation and responsive web design. I spent weeks learning how event listeners work, how to structure data in localStorage, and how CSS flexbox can create truly responsive layouts. This project was the spark that made me fall in love with web development."
+          data-type="Web Application" data-status="completed" data-source="Personal project — built from scratch"
+          data-learned="DOM manipulation, event handling, localStorage API, responsive design, CSS Flexbox"
+          data-tags="HTML,CSS,JavaScript" data-images="assets/project-taskflow.png" data-link="#">
+          <div class="project-card__preview">
+            <img src="assets/project-taskflow.png" alt="TaskFlow" class="project-card__thumb" loading="lazy" />
+            <div class="project-card__overlay"><span class="project-card__cta">Read More →</span></div>
+          </div>
+          <div class="project-card__body">
+            <span class="project-card__num">01</span>
+            <h3 class="project-card__title">TaskFlow</h3>
+            <div class="project-card__tags"><span class="tag">HTML</span><span class="tag">CSS</span><span
+                class="tag">JS</span></div>
+            <p class="project-card__desc" data-i18n="proj1_desc">Interactive to-do app with drag-and-drop and local
+              storage.</p>
+            <span class="project-card__badge project-card__badge--done" data-i18n="badge_completed">completed</span>
+          </div>
+        </article>
+
+        <article class="project-card sr" tabindex="0" data-category="python" data-accent="cool" data-index="02"
+          data-title="CalcEngine"
+          data-desc="A command-line calculator with expression parsing, history tracking, and unit conversion. Learning algorithms through math — understanding how parsers work under the hood. Building this taught me about tokenization, abstract syntax trees, and the power of recursive algorithms. The history feature uses a stack data structure, which was my first real encounter with data structures in practice."
+          data-type="CLI Tool" data-status="in progress"
+          data-source="University assignment — extended with extra features"
+          data-learned="Parsing algorithms, data structures, Python fundamentals, error handling, stack operations"
+          data-tags="Python,CLI" data-images="assets/project-calcengine.png" data-link="#">
+          <div class="project-card__preview">
+            <img src="assets/project-calcengine.png" alt="CalcEngine" class="project-card__thumb" loading="lazy" />
+            <div class="project-card__overlay"><span class="project-card__cta">Read More →</span></div>
+          </div>
+          <div class="project-card__body">
+            <span class="project-card__num">02</span>
+            <h3 class="project-card__title">CalcEngine</h3>
+            <div class="project-card__tags"><span class="tag">Python</span><span class="tag">CLI</span></div>
+            <p class="project-card__desc" data-i18n="proj2_desc">CLI calculator with expression parsing and history.</p>
+            <span class="project-card__badge project-card__badge--wip" data-i18n="badge_inprogress">in progress</span>
+          </div>
+        </article>
+
+        <article class="project-card sr" tabindex="0" data-category="game" data-accent="hot" data-index="03"
+          data-title="PixelSnake"
+          data-desc="A retro snake game built with HTML Canvas. Features difficulty scaling, score tracking, and pixel-art graphics. My first game — learning about game loops and real-time rendering. I had to learn about requestAnimationFrame, collision detection algorithms, and how to manage game state. The pixel-art aesthetic was inspired by retro arcade games."
+          data-type="Browser Game" data-status="completed"
+          data-source="Self-initiated — inspired by classic arcade games"
+          data-learned="Game loops, Canvas API, collision detection, state management, requestAnimationFrame"
+          data-tags="JavaScript,Canvas,Game" data-images="assets/project-pixelsnake.png" data-link="#">
+          <div class="project-card__preview">
+            <img src="assets/project-pixelsnake.png" alt="PixelSnake" class="project-card__thumb" loading="lazy" />
+            <div class="project-card__overlay"><span class="project-card__cta">Read More →</span></div>
+          </div>
+          <div class="project-card__body">
+            <span class="project-card__num">03</span>
+            <h3 class="project-card__title">PixelSnake</h3>
+            <div class="project-card__tags"><span class="tag">JS</span><span class="tag">Canvas</span><span
+                class="tag">Game</span></div>
+            <p class="project-card__desc" data-i18n="proj3_desc">Retro snake game with pixel-art and difficulty scaling.
+            </p>
+            <span class="project-card__badge project-card__badge--done" data-i18n="badge_completed">completed</span>
+          </div>
+        </article>
+
+        <article class="project-card sr" tabindex="0" data-category="web" data-accent="cool" data-index="04"
+          data-title="This Portfolio"
+          data-desc="The page you're looking at right now. A personal digital space designed and coded from scratch — particles, animations, and interactions all hand-built with vanilla HTML, CSS, and JavaScript. No frameworks, no libraries — just raw curiosity and late-night coding sessions. Every animation, every particle, every transition was carefully crafted to feel alive and personal."
+          data-type="Personal Website" data-status="evolving"
+          data-source="Personal project — designed and coded from scratch"
+          data-learned="CSS animations, Canvas particles, interaction design, layout thinking, responsive design, SPA routing"
+          data-tags="HTML,CSS,JavaScript" data-images="assets/project-portfolio.png" data-link="#">
+          <div class="project-card__preview">
+            <img src="assets/project-portfolio.png" alt="Portfolio" class="project-card__thumb" loading="lazy" />
+            <div class="project-card__overlay"><span class="project-card__cta">Read More →</span></div>
+          </div>
+          <div class="project-card__body">
+            <span class="project-card__num">04</span>
+            <h3 class="project-card__title">This Portfolio</h3>
+            <div class="project-card__tags"><span class="tag">HTML</span><span class="tag">CSS</span><span
+                class="tag">JS</span></div>
+            <p class="project-card__desc" data-i18n="proj4_desc">Personal digital space, coded from scratch.</p>
+            <span class="project-card__badge project-card__badge--wip" data-i18n="badge_evolving">evolving</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── JOURNEY / TIMELINE ── -->
+    <section id="journey" class="journey" aria-label="Journey">
+      <header class="section-header sr">
+        <span class="section-header__index">02</span>
+        <h2 class="section-header__title" data-i18n="journey_title">Journey</h2>
+        <span class="section-header__line" aria-hidden="true"></span>
+        <p class="section-header__note" data-i18n="journey_note">the path so far</p>
+      </header>
+
+      <div class="timeline">
+        <div class="timeline__line" aria-hidden="true"></div>
+
+        <div class="timeline__item sr" data-side="left">
+          <div class="timeline__dot" style="--dot-color:var(--accent-cool)"></div>
+          <div class="timeline__card">
+            <span class="timeline__date">Aug 2025</span>
+            <h3 class="timeline__title" data-i18n="tl1_title">Started University</h3>
+            <p class="timeline__desc" data-i18n="tl1_desc">Enrolled in Software Engineering. First exposure to
+              programming with Python
+              basics.</p>
+          </div>
+        </div>
+
+        <div class="timeline__item sr" data-side="right">
+          <div class="timeline__dot" style="--dot-color:var(--accent-warm)"></div>
+          <div class="timeline__card">
+            <span class="timeline__date">Sep 2025</span>
+            <h3 class="timeline__title" data-i18n="tl2_title">First Lines of HTML</h3>
+            <p class="timeline__desc" data-i18n="tl2_desc">Discovered web development. Built my first "Hello World" page
+              and got hooked on
+              seeing code come alive in the browser.</p>
+          </div>
+        </div>
+
+        <div class="timeline__item sr" data-side="left">
+          <div class="timeline__dot" style="--dot-color:var(--accent-hot)"></div>
+          <div class="timeline__card">
+            <span class="timeline__date">Oct 2025</span>
+            <h3 class="timeline__title" data-i18n="tl3_title">Built TaskFlow</h3>
+            <p class="timeline__desc" data-i18n="tl3_desc">Completed my first real project — a to-do app. Learned DOM
+              manipulation, events,
+              and localStorage.</p>
+          </div>
+        </div>
+
+        <div class="timeline__item sr" data-side="right">
+          <div class="timeline__dot" style="--dot-color:var(--accent-cool)"></div>
+          <div class="timeline__card">
+            <span class="timeline__date">Nov 2025</span>
+            <h3 class="timeline__title">Git & GitHub</h3>
+            <p class="timeline__desc" data-i18n="tl4_desc">Started version controlling my projects. First commit, first
+              push, first feeling
+              of "real developer."</p>
+          </div>
+        </div>
+
+        <div class="timeline__item sr" data-side="left">
+          <div class="timeline__dot" style="--dot-color:var(--accent-warm)"></div>
+          <div class="timeline__card">
+            <span class="timeline__date">Dec 2025</span>
+            <h3 class="timeline__title" data-i18n="tl5_title">PixelSnake Game</h3>
+            <p class="timeline__desc" data-i18n="tl5_desc">Built a retro snake game with Canvas API. First dive into
+              game loops and real-time
+              rendering.</p>
+          </div>
+        </div>
+
+        <div class="timeline__item sr" data-side="right">
+          <div class="timeline__dot" style="--dot-color:var(--accent-cool)"></div>
+          <div class="timeline__card">
+            <span class="timeline__date">Jan 2026</span>
+            <h3 class="timeline__title" data-i18n="tl6_title">This Portfolio</h3>
+            <p class="timeline__desc" data-i18n="tl6_desc">Designed and built this portfolio from scratch. Particles,
+              animations, transitions
+              — all vanilla JS.</p>
+          </div>
+        </div>
+
+        <div class="timeline__item sr" data-side="left">
+          <div class="timeline__dot timeline__dot--pulse" style="--dot-color:var(--accent-cool)"></div>
+          <div class="timeline__card timeline__card--current">
+            <span class="timeline__date" data-i18n="tl7_date">Now</span>
+            <h3 class="timeline__title" data-i18n="tl7_title">What's Next?</h3>
+            <p class="timeline__desc" data-i18n="tl7_desc">Learning React, exploring backend development, and building
+              bigger projects. The
+              journey continues…</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SKILLS ── -->
+    <section id="skills" class="skills" aria-label="Skills">
+      <header class="section-header sr">
+        <span class="section-header__index">03</span>
+        <h2 class="section-header__title" data-i18n="skills_title">Skills</h2>
+        <span class="section-header__line" aria-hidden="true"></span>
+        <p class="section-header__note" data-i18n="skills_note">dependencies loading…</p>
+      </header>
+
+      <div class="skills__grid">
+        <div class="skill-card sr" data-level="72">
+          <div class="skill-card__icon" style="--ic:#e44d26"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <path d="m4 2 1.25 17L12 22l6.75-3L20 2z" />
+              <path d="M8 8h8l-.5 6-3.5 1.5L8.5 14l-.25-3h3.25" />
+            </svg></div>
+          <div class="skill-card__body">
+            <div class="skill-card__top">
+              <h3 class="skill-card__name">HTML & CSS</h3><span class="skill-card__badge">practicing</span>
+            </div>
+            <div class="skill-card__track">
+              <div class="skill-card__fill" style="--fc:#e44d26"></div>
+            </div><span class="skill-card__time">~6 months</span>
+          </div>
+        </div>
+        <div class="skill-card sr" data-level="55">
+          <div class="skill-card__icon" style="--ic:#f7df1e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M12 8v6.5c0 1.38-1.12 2.5-2.5 2.5S7 15.88 7 14.5" />
+              <path d="M17 12.5c0-1.38-1.12-2.5-2.5-2.5S12 11.12 12 12.5s1.12 2.5 2.5 2.5c.53 0 1.02-.17 1.42-.45" />
+            </svg></div>
+          <div class="skill-card__body">
+            <div class="skill-card__top">
+              <h3 class="skill-card__name">JavaScript</h3><span class="skill-card__badge">learning</span>
+            </div>
+            <div class="skill-card__track">
+              <div class="skill-card__fill" style="--fc:#f7df1e"></div>
+            </div><span class="skill-card__time">~4 months</span>
+          </div>
+        </div>
+        <div class="skill-card sr" data-level="45">
+          <div class="skill-card__icon" style="--ic:#3776ab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <path d="M12 2c-1.7 0-3 .8-3 2v3c0 1.2 1.3 2 3 2h2c1.7 0 3 .8 3 2v3c0 1.2-1.3 2-3 2H8" />
+              <path d="M12 22c1.7 0 3-.8 3-2v-3c0-1.2-1.3-2-3-2h-2c-1.7 0-3-.8-3-2V10c0-1.2 1.3-2 3-2h6" />
+              <circle cx="9" cy="6" r=".5" fill="currentColor" />
+              <circle cx="15" cy="18" r=".5" fill="currentColor" />
+            </svg></div>
+          <div class="skill-card__body">
+            <div class="skill-card__top">
+              <h3 class="skill-card__name">Python</h3><span class="skill-card__badge">exploring</span>
+            </div>
+            <div class="skill-card__track">
+              <div class="skill-card__fill" style="--fc:#3776ab"></div>
+            </div><span class="skill-card__time">~3 months</span>
+          </div>
+        </div>
+        <div class="skill-card sr" data-level="30">
+          <div class="skill-card__icon" style="--ic:#f05032"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <circle cx="12" cy="12" r="3" />
+              <circle cx="6" cy="18" r="2" />
+              <circle cx="18" cy="6" r="2" />
+              <path d="M6 16V8l6 4" />
+              <path d="M18 8v8l-6-4" />
+            </svg></div>
+          <div class="skill-card__body">
+            <div class="skill-card__top">
+              <h3 class="skill-card__name">Git & GitHub</h3><span class="skill-card__badge">starting</span>
+            </div>
+            <div class="skill-card__track">
+              <div class="skill-card__fill" style="--fc:#f05032"></div>
+            </div><span class="skill-card__time">~2 months</span>
+          </div>
+        </div>
+        <div class="skill-card sr" data-level="60">
+          <div class="skill-card__icon" style="--ic:var(--accent-cool)"><svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5">
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 17h.01" />
+            </svg></div>
+          <div class="skill-card__body">
+            <div class="skill-card__top">
+              <h3 class="skill-card__name">Problem Solving</h3><span class="skill-card__badge">growing</span>
+            </div>
+            <div class="skill-card__track">
+              <div class="skill-card__fill" style="--fc:var(--accent-cool)"></div>
+            </div><span class="skill-card__time">always</span>
+          </div>
+        </div>
+        <div class="skill-card sr" data-level="25">
+          <div class="skill-card__icon" style="--ic:var(--accent-hot)"><svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5">
+              <rect x="4" y="4" width="6" height="6" rx="1" />
+              <rect x="14" y="4" width="6" height="6" rx="1" />
+              <rect x="4" y="14" width="6" height="6" rx="1" />
+              <rect x="14" y="14" width="6" height="6" rx="1" />
+              <path d="M10 7h4" />
+              <path d="M7 10v4" />
+              <path d="M17 10v4" />
+            </svg></div>
+          <div class="skill-card__body">
+            <div class="skill-card__top">
+              <h3 class="skill-card__name">Data Structures</h3><span class="skill-card__badge">initializing</span>
+            </div>
+            <div class="skill-card__track">
+              <div class="skill-card__fill" style="--fc:var(--accent-hot)"></div>
+            </div><span class="skill-card__time">~1 month</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section id="contact" class="contact" aria-label="Contact">
+      <header class="section-header sr">
+        <span class="section-header__index">04</span>
+        <h2 class="section-header__title" data-i18n="contact_title">Contact</h2>
+        <span class="section-header__line" aria-hidden="true"></span>
+        <p class="section-header__note" data-i18n="contact_note">establishing connection…</p>
+      </header>
+      <div class="contact__channels">
+        <a href="https://mail.google.com/mail/?view=cm&to=naufalgalihprakoso@gmail.com&su=Hello+from+Portfolio"
+          target="_blank" rel="noopener noreferrer" class="channel sr" data-type="email">
+          <div class="channel__pulse" aria-hidden="true"></div>
+          <div class="channel__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg></div>
+          <div class="channel__info"><span class="channel__label">email</span><span
+              class="channel__value">naufalgalih@gmail.com</span></div>
+          <div class="channel__signal"><span class="signal-bar"></span><span class="signal-bar"></span><span
+              class="signal-bar"></span></div>
+        </a>
+        <a href="https://instagram.com/lolloidl" target="_blank" rel="noopener noreferrer" class="channel sr"
+          data-type="instagram">
+          <div class="channel__pulse" aria-hidden="true"></div>
+          <div class="channel__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="5" />
+              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+            </svg></div>
+          <div class="channel__info"><span class="channel__label">instagram</span><span
+              class="channel__value">lolloidl</span></div>
+          <div class="channel__signal"><span class="signal-bar"></span><span class="signal-bar"></span><span
+              class="signal-bar"></span></div>
+        </a>
+        <a href="https://linkedin.com/in/naufalgalihprakoso" target="_blank" rel="noopener noreferrer"
+          class="channel sr" data-type="linkedin">
+          <div class="channel__pulse" aria-hidden="true"></div>
+          <div class="channel__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <path d="M8 11v5" />
+              <path d="M8 8v.01" />
+              <path d="M12 16v-5" />
+              <path d="M16 16v-3a2 2 0 0 0-4 0" />
+            </svg></div>
+          <div class="channel__info"><span class="channel__label">linkedin</span><span
+              class="channel__value">naufalgalihprakoso</span></div>
+          <div class="channel__signal"><span class="signal-bar"></span><span class="signal-bar"></span><span
+              class="signal-bar"></span></div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span class="footer__text" data-i18n="footer_text">built from scratch with curiosity</span>
+      <span class="footer__year">© 2026</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
